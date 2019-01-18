@@ -50,7 +50,6 @@ export const auth = (email, password, isSignup) => {
     const method = isSignup ? "signupNewUser" : "verifyPassword";
     axios.post("https://www.googleapis.com/identitytoolkit/v3/relyingparty/" + method + "?key=" + process.env.REACT_APP_API_KEY, authData)
       .then(response => {
-        console.log(response);
         const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
         localStorage.setItem('token', response.data.idToken);
         localStorage.setItem('expirationDate', expirationDate);
